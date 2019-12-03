@@ -1,38 +1,35 @@
 type Query {
-  feed: [Post!]!
-  drafts: [Post!]!
-  post(id: ID!): Post
-  me: User
+  # feed: [Post!]!
+  # drafts: [Post!]!
+  # post(id: ID!): Post
+  # me: User
+  roomB(id: ID!): Room!
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!): AuthPayload!
-  login(email: String!, password: String!): AuthPayload!
-  createDraft(title: String!, content: String!): Post!
-  publish(id: ID!): Post!
-  deletePost(id: ID!): Post!
+  createRoom(userIDs: [ID]!): Room
 }
 
-type Subscription {
-  feedSubscription: Post
+# type Subscription {
+#   feedSubscription: Post
+# }
+
+type Room {
+  id: ID!
+  users: [User]!
 }
 
-type AuthPayload {
-  token: String!
-  user: User!
+enum Faction {
+  ITARS
+  TERRANS
+  XENOS
+  TAKLONS
 }
 
 type User {
   id: ID!
-  email: String!
-  name: String!
-  posts: [Post!]!
-}
-
-type Post {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
-  author: User!
+  faction: Faction!
+  points: Int!
+  passed: Boolean!
+  isMyTurn: Boolean!
 }

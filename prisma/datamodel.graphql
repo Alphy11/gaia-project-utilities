@@ -1,0 +1,19 @@
+type Room {
+  id: ID! @id
+  users: [User]!
+}
+
+enum Faction {
+  ITARS
+  TERRANS
+  XENOS
+  TAKLONS
+}
+
+type User {
+  id: ID! @id
+  faction: Faction!
+  points: Int!
+  passed: Boolean!
+  isMyTurn: Boolean!
+}
