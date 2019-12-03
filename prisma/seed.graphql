@@ -1,34 +1,65 @@
 mutation {
-  user1: createUser(data: {
-    email: "alice@prisma.io"
-    name: "Alice"
-    password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m" # "secret42"
-    posts: {
-      create: {
-        title: "Join us for GraphQL Conf 2019 in Berlin"
-        content: "https://www.graphqlconf.org/"
-        published: true
-      }
+  user1: createUser(
+    data: {
+      id: "user1"
+      faction: ITARS
+      points: 10
+      passed: false
+      isMyTurn: true
     }
-  }) {
+  ) {
     id
   }
 
-  user2: createUser(data: {
-    email: "bob@prisma.io"
-    name: "Bob"
-    password: "$2b$10$o6KioO.taArzboM44Ig85O3ZFZYZpR3XD7mI8T29eP4znU/.xyJbW"  # "secret43"
-    posts: {
-      create: [{
-        title: "Subscribe to GraphQL Weekly for community news"
-        content: "https://graphqlweekly.com/"
-        published: true
-      } {
-        title: "Follow Prisma on Twitter"
-        content: "https://twitter.com/prisma"
-      }]
+  user2: createUser(
+    data: {
+      id: "user2"
+      faction: TERRANS
+      points: 10
+      passed: false
+      isMyTurn: false
     }
-  }) {
+  ) {
+    id
+  }
+
+  user3: createUser(
+    data: {
+      id: "user3"
+      faction: XENOS
+      points: 10
+      passed: false
+      isMyTurn: false
+    }
+  ) {
+    id
+  }
+
+  user4: createUser(
+    data: {
+      id: "user4"
+      faction: TAKLONS
+      points: 10
+      passed: false
+      isMyTurn: false
+    }
+  ) {
+    id
+  }
+
+  room1: createRoom(
+    data: {
+      id: "room1"
+      users: {
+        connect: [
+          { id: "user1" }
+          { id: "user2" }
+          { id: "user3" }
+          { id: "user4" }
+        ]
+      }
+    }
+  ) {
     id
   }
 }
